@@ -25,7 +25,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await ensureAdminInitialized();
+  try {
+    await ensureAdminInitialized();
+  } catch (error) {
+    console.warn("[MeetIIIT] Skipping admin bootstrap during render:", error);
+  }
   const user = await getCurrentUser();
 
   let hasUnreadChats = false;
