@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MeetIIIT
 
-## Getting Started
+MeetIIIT is a minimal anonymous meetup app for IIIT-H students.
 
-First, run the development server:
+Users create profiles with:
+- username
+- up to 5 interest tags
+- a "What I Wanna Say" note, which can be as long as they want
+
+Students can discover others through a notes-style feed and start anonymous DMs.
+
+## Stack
+
+- Next.js (App Router)
+- MongoDB (via Mongoose)
+
+## Features
+
+- Feed with filtering by tags and New/Old sorting
+- Anonymous public profiles
+- 1:1 anonymous chat (DM)
+- Manual verification flow for new users
+- Admin dashboard for approvals and moderation
+- Settings: change password, delete account
+
+## Verification Flow
+
+During signup, users provide name, batch, username, and password.
+
+Name and batch are used only for verification and are not shown publicly.
+
+A 6-digit OTP is generated at signup. Users must share that OTP with OSDG to be approved.
+
+Contact:
+- Instagram: https://www.instagram.com/osdg.iiith/
+- Email: osdg@students.iiit.ac.in
+
+## Local Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create `.env.local`:
+
+```bash
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB=meetiiit
+```
+
+`MONGODB_DB` is optional (defaults to `meetiiit`).
+
+3. Start dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Admin Bootstrap
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+On server startup, the app ensures an admin account exists:
+- username: `osdg`
+- password: randomly generated and printed in backend logs
 
-## Learn More
+Keep that password secure and rotate it after first login.
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - start dev server
+- `npm run build` - production build
+- `npm run start` - start production server
+- `npm run lint` - run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<a href="https://www.flaticon.com/free-icons/friends" title="friends icons">Friends icon created by Freepik - Flaticon</a>
